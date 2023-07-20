@@ -1,0 +1,9 @@
+html,
+body {
+  overflow-x: hidden;
+}
+
+body{
+  width: 100vw;
+  min-height: 100vh;
+}
