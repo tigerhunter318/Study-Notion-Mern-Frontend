@@ -1,4 +1,52 @@
-export const FooterLink2 = [
+const footerLinks = [
+  {
+    title: 'Company',
+    links: [
+      { title: 'About', link: '/about' },
+      { title: 'Careers', link: '/careers' },
+      { title: 'Affiliates', link: '/affiliates' },
+    ]
+  },
+
+  {
+    title: 'Resources',
+    links: [
+      { title: 'Articles', link: '/articles' },
+      { title: 'Blog', link: '/blog' },
+      { title: 'Chart Sheet', link: '/chart-sheet' },
+      { title: 'Code Challenges', link: '/code-challenges' },
+      { title: 'Docs', link: '/docs' },
+      { title: 'Projects', link: '/projects' },
+      { title: 'Videos', link: '/videos' },
+      { title: 'Workspaces', link: '/workspaces' },
+    ]
+  },
+
+  {
+    title: 'Support',
+    links: [
+      { title: 'Help Center', link: '/help-center' },
+    ]
+  },
+
+  {
+    title: 'Plans',
+    links: [
+      { title: 'Paid Membership', link: '/paid-membership' },
+      { title: 'For Students', link: '/for-students' },
+      { title: 'Business Solutions', link: '/business-solutions' },
+    ]
+  },
+
+  {
+    title: 'Community',
+    links: [
+      { title: 'Forums', link: '/forums' },
+      { title: 'Chapters', link: '/chapters' },
+      { title: 'Events', link: '/events' },
+    ]
+  },
+
   {
     title: "Subjects",
     links: [
@@ -43,13 +91,15 @@ export const FooterLink2 = [
   {
     title: "Career building",
     links: [
-        {title: "Career paths", link: "/career-paths"},
-        {title: "Career services", link: "/career-services"},
-        {title: "Interview prep", link: "/interview-prep"},
-        {title: "Professional certification", link: "/professional-certification"},
-        {title: "-", link: "/hi"},
-        {title: "Full Catalog", link: "/full-catalog"},
-        {title: "Beta Content", link: "/beta-content"}
+      { title: "Career paths", link: "/career-paths" },
+      { title: "Career services", link: "/career-services" },
+      { title: "Interview prep", link: "/interview-prep" },
+      { title: "Professional certification", link: "/professional-certification" },
+      { title: "-", link: "/hi" },
+      { title: "Full Catalog", link: "/full-catalog" },
+      { title: "Beta Content", link: "/beta-content" }
     ]
   }
 ];
+
+module.exports = footerLinks;
