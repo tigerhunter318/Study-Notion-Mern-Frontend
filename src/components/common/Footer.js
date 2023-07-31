@@ -9,7 +9,7 @@ import { FaFacebook, FaInstagram, FaTwitter, FaYoutube, FaLinkedin } from 'react
 
 const Footer = () => {
 
-  const BottomFooter = ["Privacy Policy", "Cookie Policy", "Terms"]
+  const BottomFooter = ["Privacy Policy", "Cookie Policy", "Terms"];
   const section2 = [];
   for (let i = 5; i <= 7; i++) {
     section2.push(
@@ -68,12 +68,14 @@ const Footer = () => {
             {
               BottomFooter.map((ele, ind) => {
                 return (
-                  <div
-                    key={ind}
-                    className={`cursor-pointer hover:text-richblack-50 transition-all duration-200 px-3 
+                  <Link to={ele.split(' ').join('-').toLowerCase()} key={ind} >
+                    <div
+                      className={`cursor-pointer hover:text-richblack-50 transition-all duration-200 px-3 
                                 ${ind !== BottomFooter.length - 1 ? ' border-r border-richblack-700 ' : ''} `}>
-                    {ele}
-                  </div>
+                      {ele}
+                    </div>
+
+                  </Link>
                 )
               })
             }

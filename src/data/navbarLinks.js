@@ -1,4 +1,4 @@
-export const NavbarLinks = [
+const navbarLinks = [
   {
     title: "Home",
     path: "/",
@@ -16,3 +16,5 @@ export const NavbarLinks = [
     path: "/contact",
   },
 ];
+
+module.exports = navbarLinks
