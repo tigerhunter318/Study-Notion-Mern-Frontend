@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux'
 import ProfileDropDown from '../core/Auth/ProfileDropDown'
 import { toast } from 'react-hot-toast'
 import { apiConnector } from '../../services/apiConnector'
-import { categories } from '../../services/apis'
+import { categoriesApi } from '../../services/apis'
 import { GiHamburgerMenu } from 'react-icons/gi'
 
 
@@ -24,7 +24,7 @@ const Navbar = () => {
 
   const fetchCatalog = async () => {
     try {
-      const result = await apiConnector('GET', categories.CATEGORIES_API);
+      const result = await apiConnector('GET', categoriesApi.GET_GET_ALL_CATEGORIES_API);
       setCatalogs(result.data.data)
     } catch (error) {
       toast.error('Could not fetch Category List');
@@ -39,7 +39,6 @@ const Navbar = () => {
     if (linkPath === '/') return matchPath({ path: linkPath }, location.pathname);
     return location.pathname.startsWith(linkPath);
   }
-
 
   return (
     <div className='bg-richblack-900 border-b border-b-richblack-700' >
@@ -127,12 +126,14 @@ const Navbar = () => {
           }
 
           {
-            user && user?.accountType === 'Student' &&
+            user && user?.role === 'Student' &&
             (
-              // TODO  - manage span
               <Link to={'/dashboard/cart'} className='relative' >
-                <AiOutlineShoppingCart />
-                {totalCartItems > 0 && <span>{totalCartItems}</span>}
+                <AiOutlineShoppingCart className='text-2xl text-richblack-100' />
+                {totalCartItems > 0 && (
+                  <span className='absolute text-yellow-100 text-center text-xs font-bold bg-richblack-600 h-5 w-5 -bottom-2 -right-2 grid place-items-center rounded-full' >
+                    {totalCartItems}
+                  </span>)}
               </Link>
             )
           }
