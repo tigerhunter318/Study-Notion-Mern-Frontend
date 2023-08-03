@@ -56,7 +56,7 @@ export const sendOtp = async (email, dispatch, navigate) => {
   dispatch(setLoading(true))
 
   try {
-    const response = await apiConnector('POST', authApi.POST_SEND_OTP_API, {
+    await apiConnector('POST', authApi.POST_SEND_OTP_API, {
       email
     });
     toast.success('OTP sent successfully');
