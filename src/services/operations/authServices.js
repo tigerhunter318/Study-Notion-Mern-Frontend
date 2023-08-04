@@ -75,4 +75,49 @@ export const logout = async (dispatch, navigate) => {
   localStorage.removeItem('token');
   toast.success('Logged out')
   navigate('/')
-} 
+}
+
+
+export const forgotPassword = async (email, setEmailSent, dispatch, navigate) => {
+  dispatch(setLoading(true));
+  const toastId = toast.loading('Loading ...')
+
+  try {
+    await apiConnector('POST', authApi.POST_FORGOT_PASSWORD_API, {
+      email
+    });
+
+    toast.success('Reset Email Sent');
+    setEmailSent(true)
+  } catch (error) {
+    // toast.error('Login Failed');
+    toast.error(error?.response?.data?.error || 'Forgot Password Failed')
+  }
+
+  toast.dismiss(toastId)
+  dispatch(setLoading(false));
+}
+
+export const resetPassword = async (resetToken, password, dispatch, navigate) => {
+  dispatch(setLoading(true));
+  const toastId = toast.loading('Loading ...')
+
+  try {
+    const response = await apiConnector('PUT', authApi.PUT_RESET_PASSWORD_API, {
+      password,
+      resetToken
+    });
+
+    toast.success('Password reset successful');
+    dispatch(setToken(response.data.token));
+    dispatch(setUser(response.data.user));
+    localStorage.setItem('token', JSON.stringify(response.data.token));
+    navigate('/dashboard/my-profile')
+  } catch (error) {
+    // toast.error('Login Failed');
+    toast.error(error?.response?.data?.error || 'Reset Password Failed')
+  }
+
+  toast.dismiss(toastId)
+  dispatch(setLoading(false));
+}

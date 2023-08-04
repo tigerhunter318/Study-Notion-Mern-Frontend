@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { BiArrowBack } from "react-icons/bi";
 import { RxCountdownTimer } from "react-icons/rx";
@@ -72,7 +72,7 @@ const VerifyEmail = () => {
                 </Link>
 
                 <button className='flex items-center gap-x-2 text-blue-100'
-                  onClick={() => dispatch(sendOtp(signUpData.email))} >
+                  onClick={() => sendOtp(signUpData.email, dispatch, navigate)} >
                   <RxCountdownTimer />
                   <p>Resend OTP</p>
                 </button>

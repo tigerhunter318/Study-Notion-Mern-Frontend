@@ -12,6 +12,9 @@ import { useSelector } from 'react-redux';
 import { getCurrentUser } from './services/operations/profileServices';
 import { useDispatch } from 'react-redux';
 import VerifyEmail from './pages/VerifyEmail';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
+import PageNotFound from './pages/PageNotFound';
 
 function App() {
 
@@ -23,7 +26,7 @@ function App() {
     if (token) {
       getCurrentUser(token, dispatch, navigate);
     }
-  }, []);
+  }, [token, dispatch, navigate]);
 
 
   return (
@@ -55,7 +58,28 @@ function App() {
           }
         />
 
-        <Route path="*" element={<p className='text-white' >Page Not Found</p>} />
+        <Route
+          path='forgot-password'
+          element={
+            <OpenRoute>
+              <ForgotPassword />
+            </OpenRoute>
+          }
+        />
+
+        <Route
+          path='reset-password'
+          element={
+            <OpenRoute>
+              <ResetPassword />
+            </OpenRoute>
+          }
+        />
+
+
+
+
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
   );
