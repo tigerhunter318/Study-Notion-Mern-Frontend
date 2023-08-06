@@ -46,7 +46,7 @@ body {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  border: 9px solid #0F7A9D;
+  border: 9px solid #0f7a9d;
   animation: spinner-bulqg1 0.8s infinite linear alternate, spinner-oaa3wk 1.6s infinite linear;
 }
 
@@ -96,4 +96,16 @@ body {
   100% {
     transform: scaleY(-1) rotate(-135deg);
   }
+}
+
+.label-style {
+  @apply mb-2 text-sm text-richblack-5;
+}
+
+.input-style {
+  @apply w-full rounded-lg bg-richblack-700 text-richblack-5 p-3 shadow-[0_1px_0_0] shadow-white/50 placeholder:text-richblack-400 focus:outline-none;
+}
+
+.input-error-style {
+  @apply mt-1 text-xs text-yellow-100;
 }

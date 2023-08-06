@@ -29,6 +29,11 @@ export const courseApi = {
   PUT_PUBLISH_COURSE_API: BASE_URL + '/courses/publishcourse', // courseId
 }
 
+// OTHER API
+export const otherApi={
+  POST_CONTACT_US: BASE_URL+'/other/contactus'
+}
+
 // PAYMENT API
 export const paymentApi = {
   POST_CAPTURE_PAYMENT_API: BASE_URL + '/payments/capturepayment',
