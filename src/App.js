@@ -36,7 +36,7 @@ function App() {
   }, [token, dispatch, navigate]);
 
   return (
-    <div className="bg-richblack-900 min-h-screen flex flex-col font-inter">
+    <div className="bg-richblack-900 w-screen min-h-screen flex flex-col font-inter">
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />

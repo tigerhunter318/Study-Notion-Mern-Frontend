@@ -98,16 +98,18 @@ body {
   }
 }
 
-.label-style {
-  @apply mb-2 text-sm text-richblack-5;
-}
-
 .input-style {
   @apply w-full rounded-lg bg-richblack-700 text-richblack-5 p-3 shadow-[0_1px_0_0] shadow-white/50 placeholder:text-richblack-400 focus:outline-none;
 }
 
-.input-error-style {
-  @apply mt-1 text-xs text-yellow-100;
+@layer components {
+  .label-style {
+    @apply mb-2 text-sm text-richblack-5;
+  }
+
+  .input-error-style {
+    @apply mt-1 text-xs text-yellow-100;
+  }
 }
 
 

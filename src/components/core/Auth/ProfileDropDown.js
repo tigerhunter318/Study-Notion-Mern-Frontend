@@ -9,7 +9,8 @@ import { useRef } from 'react'
 import useOnClickOutside from '../../../hooks/useOnClickOutside'
 
 const ProfileDropDown = () => {
-  const { user } = useSelector(state => state.profile)
+  const { token } = useSelector(state => state.auth);
+  const { user } = useSelector(state => state.profile);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const modalRef = useRef(null);
@@ -19,7 +20,7 @@ const ProfileDropDown = () => {
 
   const handleLogOutClick = (e) => {
     setModalOpen(false);
-    logout(dispatch, navigate);
+    logout(token, dispatch, navigate);
   }
 
   if (!user) return null;

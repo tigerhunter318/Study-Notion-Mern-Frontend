@@ -24,4 +24,4 @@ export const getCurrentUser = async (token, dispatch, navigate) => {
 
   setLoading(false);
   // toast.dismiss(toastId);
-} 
+}

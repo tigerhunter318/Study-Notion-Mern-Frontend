@@ -12,6 +12,7 @@ import { useState } from 'react'
 
 
 const Sidebar = () => {
+  const { token } = useSelector(state => state.auth)
   const { user } = useSelector(state => state.profile)
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,15 +24,14 @@ const Sidebar = () => {
     text2: 'You will be logged out of your account',
     btn1Text: 'Logout',
     btn2Text: 'Cancel',
-    btn1Handler: () => logout(dispatch, navigate),
+    btn1Handler: () => logout(token, dispatch, navigate),
     btn2Handler: () => setIsModalOpen(false),
     closeModalHandler: () => setIsModalOpen(false),
   }
 
   return (
     <div className='bg-richblack-800 ' >
-
-      <div className='flex flex-col min-w-[220px] min-h-[calc(100vh-3.5rem)] border-r border-richblack-700 py-10' >
+      <div className='flex flex-col min-w-[220px]  min-h-[calc(100vh-3.5rem)] border-r border-richblack-700 py-10' >
         <div className='flex flex-col' >
           {
             sidebarLinks.map((link) => {

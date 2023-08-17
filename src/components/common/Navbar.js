@@ -41,7 +41,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className='bg-richblack-900 border-b border-b-richblack-700' >
+    <div className='bg-richblack-900 border-b border-b-richblack-700 h-14' >
       <div className='w-11/12 h-14 mx-auto max-w-maxContent flex flex-row items-center justify-between' >
         {/* Logo */}
         <div>

@@ -10,7 +10,7 @@ const MyProfile = () => {
   const { user } = useSelector(state => state.profile)
 
   return (
-    <div className='bg-richblack-900 text-white mx-8' >
+    <div className='bg-richblack-900 text-white mx-5' >
       <h1 className='font-medium text-richblack-5 text-3xl mb-14' >My Profile</h1>
 
       <div className='flex items-center justify-between rounded-md border border-richblack-700 bg-richblack-800 p-8 px-12'>
