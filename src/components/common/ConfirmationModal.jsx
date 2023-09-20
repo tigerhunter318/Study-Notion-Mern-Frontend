@@ -4,6 +4,17 @@ import { useRef } from 'react'
 import useOnClickOutside from '../../hooks/useOnClickOutside'
 
 const ConfirmationModal = ({ modalData }) => {
+  // const modalData2 = {
+  //   text1: 'Are you sure?',
+  //   text2: 'You will be logged out of your account',
+  //   btn1Text: 'Logout',
+  //   btn2Text: 'Cancel',
+  //   btn1Handler: () => logout(token, dispatch, navigate),
+  //   btn2Handler: () => setIsModalOpen(false),
+  //   closeModalHandler: () => setIsModalOpen(false),
+  // }
+
+
   const modalDiv = useRef(null);
 
   useOnClickOutside(modalDiv, modalData.closeModalHandler);

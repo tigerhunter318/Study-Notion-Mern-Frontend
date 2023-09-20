@@ -3,7 +3,7 @@ import { authApi, profileApi, userApi } from "../apis"
 import { apiConnector } from "../apiConnector";
 import { getCurrentUser } from "./profileServices";
 import { setUser } from "../../redux/slices/profileSlice";
-import { deleteBrowserData, logout } from "./authServices";
+import { deleteBrowserData } from "./authServices";
 
 export const changeAvatar = async (token, formData, setLoading, dispatch, navigate) => {
   const toastId = toast.loading('Updating...')

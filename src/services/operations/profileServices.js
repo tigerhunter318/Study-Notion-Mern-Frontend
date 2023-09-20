@@ -18,7 +18,7 @@ export const getCurrentUser = async (token, dispatch, navigate) => {
     dispatch(setUser(response.data.data));
   } catch (error) {
     toast.error('Could not get user details, Login Again')
-    dispatch(logout(dispatch, navigate));
+    dispatch(logout(token, dispatch, navigate));
     navigate('/login')
   }
 

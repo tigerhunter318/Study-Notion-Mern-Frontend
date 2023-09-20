@@ -19,9 +19,15 @@ import { getCurrentUser } from './services/operations/profileServices';
 import DashBoard from './pages/DashBoard';
 import MyProfile from './components/core/Dashboard/MyProfile';
 import Settings from './components/core/Dashboard/Settings/Settings';
-import Cart from './components/core/Dashboard/Cart';
+import Cart from './components/core/Dashboard/Cart/Cart';
 import EnrolledCourses from './components/core/Dashboard/EnrolledCourses';
 import PurchaseHistory from './components/core/Dashboard/PurchaseHistory';
+import { ROLE_TYPE } from './utils/constants';
+import InstructorDashboard from './components/core/Dashboard/InstructorDashboard/InstructorDashboard';
+import InstructorMyCourses from './components/core/Dashboard/InstructorMyCourses/InstructorMyCourses';
+import AddCourse from './components/core/Dashboard/AddCourse/AddCourse';
+import PrivateStudentRoute from './components/core/Auth/PrivateStudentRoute';
+import PrivateInstructorPage from './components/core/Auth/PrivateInstructorPage';
 
 function App() {
 
@@ -34,6 +40,8 @@ function App() {
       getCurrentUser(token, dispatch, navigate);
     }
   }, [token, dispatch, navigate]);
+
+  const { user } = useSelector(state => state.profile);
 
   return (
     <div className="bg-richblack-900 w-screen min-h-screen flex flex-col font-inter">
@@ -56,9 +64,38 @@ function App() {
           <Route index element={<Navigate to={'my-profile'} />} />
           <Route path='my-profile' element={<MyProfile />} />
           <Route path='settings' element={<Settings />} />
-          <Route path='cart' element={<Cart />} />
-          <Route path='enrolled-courses' element={<EnrolledCourses />} />
-          <Route path='purchase-history' element={<PurchaseHistory />} />
+
+          {/* Routes only for students */}
+          <Route path='cart' element={<PrivateStudentRoute route={<Cart />} />} />
+          <Route path='enrolled-courses' element={<PrivateStudentRoute route={<EnrolledCourses />} />} />
+          <Route path='purchase-history' element={<PrivateStudentRoute route={<PurchaseHistory />} />} />
+
+          {/* {
+            user?.role === ROLE_TYPE.STUDENT &&
+            (
+              <>
+                <Route path='cart' element={<Cart />} />
+                <Route path='enrolled-courses' element={<EnrolledCourses />} />
+                <Route path='purchase-history' element={<PurchaseHistory />} />
+              </>
+            )
+          } */}
+
+          {/* Routes only for instructor */}
+          <Route path='instructor' element={<PrivateInstructorPage route={<InstructorDashboard />} />} />
+          <Route path='my-courses' element={<PrivateInstructorPage route={<InstructorMyCourses />} />} />
+          <Route path='add-course' element={<PrivateInstructorPage route={<AddCourse />} />} />
+
+          {/* {
+            user?.role === ROLE_TYPE.INSTRUCTOR &&
+            (
+              <>
+                <Route path='instructor' element={<InstructorDashboard />} />
+                <Route path='my-courses' element={<InstructorMyCourses />} />
+                <Route path='add-course' element={<AddCourse />} />
+              </>
+            )
+          } */}
 
         </Route>
 

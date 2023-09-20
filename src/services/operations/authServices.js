@@ -72,7 +72,7 @@ export const sendOtp = async (email, dispatch, navigate) => {
 export const logout = async (token, dispatch, navigate) => {
   try {
     const response = await apiConnector('POST', authApi.POST_LOGOUT_USER_API, null, {
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`
     });
     dispatch(setToken(null));
     dispatch(setUser(null));
@@ -80,7 +80,11 @@ export const logout = async (token, dispatch, navigate) => {
     toast.success('Logged out')
     navigate('/login')
   } catch (error) {
-    toast.error(error?.response?.data?.error || 'SignUp Failed')
+    toast.error(error?.response?.data?.error || 'logout Failed')
+    dispatch(setToken(null));
+    dispatch(setUser(null));
+    localStorage.removeItem('token');
+    navigate('/login')
   }
 }
 
