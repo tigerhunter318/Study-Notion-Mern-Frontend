@@ -26,8 +26,8 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const [catalogs, setCatalogs] = useState([]);
-  const [isMenuModalOpen, setIsMenuModalOpen] = useState(true);
-  const [categoryOpen, setCategoryOpen] = useState(true);
+  const [isMenuModalOpen, setIsMenuModalOpen] = useState(false);
+  const [categoryOpen, setCategoryOpen] = useState(false);
 
   const fetchCatalog = async () => {
     try {
