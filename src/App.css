@@ -108,8 +108,6 @@ body {
   }
 
   .input-error-style {
-    @apply  mt-1 text-xs text-pink-200 tracking-wide;
+    @apply mt-1 text-xs text-pink-200 tracking-wide;
   }
 }
-
-

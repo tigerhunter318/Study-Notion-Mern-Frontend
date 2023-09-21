@@ -1,26 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import logo from '../../assets/Logo/Logo-Full-Light.png'
 import navbarLinks from '../../data/navbarLinks'
-import { Link, matchPath } from 'react-router-dom'
-import { SlArrowDown } from 'react-icons/sl'
+import { Link, matchPath, useNavigate } from 'react-router-dom'
+import { SlArrowDown, SlArrowUp } from 'react-icons/sl'
 import { useLocation } from 'react-router-dom'
-import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { useSelector } from 'react-redux'
+import { AiOutlineShoppingCart, AiOutlineLogin, AiOutlineHome, AiOutlineContacts } from 'react-icons/ai';
+import { useDispatch, useSelector } from 'react-redux'
 import ProfileDropDown from '../core/Auth/ProfileDropDown'
 import { toast } from 'react-hot-toast'
 import { apiConnector } from '../../services/apiConnector'
 import { categoriesApi } from '../../services/apis'
 import { GiHamburgerMenu } from 'react-icons/gi'
-
+import HamburgerMenu from './HamburgerMenu'
+import { VscDashboard, VscSignOut, VscSignIn } from "react-icons/vsc"
+import { logout } from '../../services/operations/authServices'
+import { BiCategory, BiDetail } from 'react-icons/bi'
 
 const Navbar = () => {
 
   const { token } = useSelector((state) => state.auth)
   const { user } = useSelector((state) => state.profile)
-  const { totalCartItems } = useSelector((state) => state.cart)
+  const { cartItemsCount } = useSelector((state) => state.cart)
   const location = useLocation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [catalogs, setCatalogs] = useState([]);
+  const [isMenuModalOpen, setIsMenuModalOpen] = useState(true);
+  const [categoryOpen, setCategoryOpen] = useState(true);
 
   const fetchCatalog = async () => {
     try {
@@ -39,6 +46,14 @@ const Navbar = () => {
     if (linkPath === '/') return matchPath({ path: linkPath }, location.pathname);
     return location.pathname.startsWith(linkPath);
   }
+
+  const handleLogOutClick = async (e) => {
+    setIsMenuModalOpen(false);
+    await logout(token, dispatch, navigate);
+  }
+
+
+
 
   return (
     <div className='bg-richblack-900 border-b border-b-richblack-700 h-14' >
@@ -130,24 +145,152 @@ const Navbar = () => {
             (
               <Link to={'/dashboard/cart'} className='relative' >
                 <AiOutlineShoppingCart className='text-2xl text-richblack-100' />
-                {totalCartItems > 0 && (
+                {cartItemsCount > 0 && (
                   <span className='absolute text-yellow-100 text-center text-xs font-bold bg-richblack-600 h-5 w-5 -bottom-2 -right-2 grid place-items-center rounded-full' >
-                    {totalCartItems}
+                    {cartItemsCount}
                   </span>)}
               </Link>
             )
           }
 
           {
-            // TODO  - create Profile drop down
             token !== null && (<ProfileDropDown />)
           }
         </div>
 
         {/* TODO : hamburger */}
-        <div className='mr-4 md:hidden' >
-          <GiHamburgerMenu className='fill-richblack-100' fontSize={24} />
+        <div>
+          <GiHamburgerMenu
+            onClick={() => setIsMenuModalOpen(prev => !prev)}
+            className={`mr-4 md:hidden fill-richblack-100 `}
+            fontSize={24}
+          />
+
+          <HamburgerMenu
+            isMenuModalOpen={isMenuModalOpen}
+            setIsMenuModalOpen={setIsMenuModalOpen}
+          >
+            <div className='flex flex-col gap-y-2 py-5 px-5' >
+              {
+                token === null &&
+                (
+                  <Link to={'/login'} onClick={() => setIsMenuModalOpen(false)}   >
+                    <div className='flex gap-x-2 items-center w-full py-2 px-3 text-richblack-100 hover:text-richblack-25 hover:bg-richblack-700 ' >
+                      <VscSignIn className='text-lg' />
+                      Log In
+                    </div>
+                  </Link>
+                )
+              }
+
+              {
+                token === null &&
+                (
+                  <Link to={'/signup'} onClick={() => setIsMenuModalOpen(false)} >
+                    <div className='flex gap-x-2 items-center w-full py-2 px-3 text-richblack-100 hover:text-richblack-25 hover:bg-richblack-700 ' >
+                      <AiOutlineLogin className='text-lg' />
+                      Sign Up
+                    </div>
+                  </Link>
+                )
+              }
+
+              {
+                token !== null &&
+                (
+                  <Link to={'/dashboard/my-profile'} onClick={() => setIsMenuModalOpen(false)}  >
+                    <div className='flex gap-x-2 items-center w-full py-2 px-3 text-richblack-100 hover:text-richblack-25 hover:bg-richblack-700 ' >
+                      <VscDashboard className='text-lg' />
+                      Dashboard
+                    </div>
+                  </Link>
+                )
+              }
+
+              {
+                token !== null && user && user?.role === 'Student' &&
+                (
+                  <Link to={'/dashboard/cart'} onClick={() => setIsMenuModalOpen(false)}  >
+                    <div className='flex gap-x-2 items-center w-full py-2 px-3 text-richblack-100 hover:text-richblack-25 hover:bg-richblack-700 ' >
+                      <AiOutlineShoppingCart className='text-lg' />
+                      Cart
+                    </div>
+                  </Link>
+                )
+              }
+
+              {
+                token !== null &&
+                (
+                  <div className='flex gap-x-2 items-center w-full py-2 px-3 text-richblack-100 hover:text-richblack-25 hover:bg-richblack-700 cursor-pointer'
+                    onClick={handleLogOutClick}>
+                    <VscSignOut className='text-lg' />
+                    LogOut
+                  </div>
+                )
+              }
+
+              {/* General Buttons */}
+              <div className='h-[1px] my-2 bg-richblack-100 w-3/4 mx-auto' ></div>
+
+              <Link to={'/'} onClick={() => setIsMenuModalOpen(false)}   >
+                <div className='flex gap-x-2 items-center w-full py-2 px-3 text-richblack-100 hover:text-richblack-25 hover:bg-richblack-700 ' >
+                  <AiOutlineHome className='text-lg' />
+                  Home
+                </div>
+              </Link>
+
+              <Link to={'/about'} onClick={() => setIsMenuModalOpen(false)}   >
+                <div className='flex gap-x-2 items-center w-full py-2 px-3 text-richblack-100 hover:text-richblack-25 hover:bg-richblack-700 ' >
+                  <BiDetail className='text-lg' />
+                  About Us
+                </div>
+              </Link>
+
+              <Link to={'/contact'} onClick={() => setIsMenuModalOpen(false)} >
+                <div className='flex gap-x-2 items-center w-full py-2 px-3 text-richblack-100 hover:text-richblack-25 hover:bg-richblack-700 ' >
+                  <AiOutlineContacts className='text-lg' />
+                  Contact Us
+                </div>
+              </Link>
+
+              {/* Category */}
+              <div className=''
+                onClick={() => setCategoryOpen(prev => !prev)}
+              >
+                <details >
+                  <summary className='flex gap-x-2 items-center w-full py-2 px-3 text-richblack-100 hover:text-richblack-25 hover:bg-richblack-700' >
+                    <BiCategory className='text-lg' />
+                    Category
+                    {
+                      categoryOpen ? <SlArrowUp className='translate-y-[1px]' /> : <SlArrowDown className='translate-y-[1px]' />
+                    }
+                  </summary>
+
+                  <div className='px-4 text-richblack-100' >
+                    {
+                      catalogs.length ?
+                        (
+                          <div className='flex flex-col capitalize' >
+                            {
+                              catalogs.map((catalog, index) => (
+                                <Link to={catalog.name.split(' ').join('-')} key={index} >
+                                  <p className='hover:bg-richblack-50 rounded-lg py-2 pl-4' >{catalog.name}</p>
+                                </Link>
+                              ))
+                            }
+                          </div>
+                        )
+                        :
+                        (<div className='select-none cursor-not-allowed' >No Catalog Available</div>)
+                    }
+                  </div>
+                </details>
+              </div>
+            </div>
+          </HamburgerMenu>
         </div>
+
       </div>
     </div>
   )
