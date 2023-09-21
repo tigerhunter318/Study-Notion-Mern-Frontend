@@ -111,3 +111,7 @@ body {
     @apply mt-1 text-xs text-pink-200 tracking-wide;
   }
 }
+
+.removeBlueBoxColor {
+  -webkit-tap-highlight-color: transparent;
+}

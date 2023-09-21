@@ -16,7 +16,7 @@ const HamburgerMenu = ({ children, isMenuModalOpen, setIsMenuModalOpen }) => {
       <div className='flex min-h-full' >
         <div className=' bg-richblack-200 bg-opacity-20 w-1/4 ' >
           <div
-            className='mt-5 ml-auto mr-5 h-14 aspect-square rounded-full bg-richblack-900 text-white grid place-items-center text-lg cursor-pointer'
+            className='mt-5 ml-auto mr-5 h-14 aspect-square rounded-full bg-richblack-900 text-white grid place-items-center text-lg cursor-pointer removeBlueBoxColor'
             onClick={() => setIsMenuModalOpen(false)}
           >
             <RxCross2 fontSize={32} className={'fill-richblack-5 '} />

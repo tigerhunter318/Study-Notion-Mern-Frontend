@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import logo from '../../assets/Logo/Logo-Full-Light.png'
 import navbarLinks from '../../data/navbarLinks'
 import { Link, matchPath, useNavigate } from 'react-router-dom'
-import { SlArrowDown, SlArrowUp } from 'react-icons/sl'
+import { SlArrowDown, SlArrowRight, SlArrowUp } from 'react-icons/sl'
 import { useLocation } from 'react-router-dom'
 import { AiOutlineShoppingCart, AiOutlineLogin, AiOutlineHome, AiOutlineContacts } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux'
@@ -259,11 +259,11 @@ const Navbar = () => {
                 onClick={() => setCategoryOpen(prev => !prev)}
               >
                 <details >
-                  <summary className='flex gap-x-2 items-center w-full py-2 px-3 text-richblack-100 hover:text-richblack-25 hover:bg-richblack-700' >
+                  <summary className='flex gap-x-2 items-center w-full py-2 px-3 text-richblack-100 ' >
                     <BiCategory className='text-lg' />
                     Category
                     {
-                      categoryOpen ? <SlArrowUp className='translate-y-[1px]' /> : <SlArrowDown className='translate-y-[1px]' />
+                      categoryOpen ? <SlArrowUp className='translate-y-[1px] ml-auto mr-1' /> : <SlArrowDown className='translate-y-[1px] ml-auto mr-1' />
                     }
                   </summary>
 
@@ -274,15 +274,15 @@ const Navbar = () => {
                           <div className='flex flex-col capitalize' >
                             {
                               catalogs.map((catalog, index) => (
-                                <Link to={catalog.name.split(' ').join('-')} key={index} >
-                                  <p className='hover:bg-richblack-50 rounded-lg py-2 pl-4' >{catalog.name}</p>
+                                <Link to={catalog.name.split(' ').join('-')} key={index} onClick={() => setIsMenuModalOpen(false)} >
+                                  <p className=' rounded-lg py-2 pl-4' >{catalog.name}</p>
                                 </Link>
                               ))
                             }
                           </div>
                         )
                         :
-                        (<div className='select-none cursor-not-allowed' >No Catalog Available</div>)
+                        (<div className='rounded-lg py-2 pl-4 select-none cursor-not-allowed' >No Catalog Available</div>)
                     }
                   </div>
                 </details>
