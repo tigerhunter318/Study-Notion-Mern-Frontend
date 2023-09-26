@@ -118,9 +118,9 @@ const NestedView = ({ handleChangeEditSectionName }) => {
                       {
                         listOfSectionOpen.includes(section._id)
                           ?
-                          <AiFillCaretRight className="text-xl text-richblack-300" />
-                          :
                           <AiFillCaretDown className="text-xl text-richblack-300" />
+                          :
+                          <AiFillCaretRight className="text-xl text-richblack-300" />
                       }
                     </div>
                   </div>

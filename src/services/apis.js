@@ -16,7 +16,7 @@ export const authApi = {
 // CATAGORIES API
 export const categoriesApi = {
   GET_GET_ALL_CATEGORIES_API: BASE_URL + '/categories',
-  GET_GET_CATEGORY_DATA_API: BASE_URL + '/categories', // /catId/courses
+  POST_GET_CATEGORY_COURSES_API: BASE_URL + '/categories/getcategorycourses', 
   POST_GET_CREATE_CATEGORY_API: BASE_URL + '/categories'
 }
 
@@ -27,8 +27,9 @@ export const courseApi = {
   POST_GET_FULL_DETAILS_OF_COURSE: BASE_URL + '/courses/getfullcoursedetails',
   POST_CREATE_COURSE_API: BASE_URL + '/courses',
   GET_GET_ALL_REVIEWS_OF_COURSE_API: BASE_URL + '/courses', // /courseId/reviews
-  PUT_PUBLISH_COURSE_API: BASE_URL + '/courses/publishcourse', // courseId
   PUT_EDIT_COURSE_API: BASE_URL + '/courses/editcourse',
+  DELETE_DELETE_COURSE_API: BASE_URL + '/courses/deletecourse',
+  
 }
 
 // OTHER API

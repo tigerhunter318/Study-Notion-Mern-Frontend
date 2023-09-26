@@ -1,5 +1,5 @@
 import { toast } from "react-hot-toast"
-import { categoriesApi, courseApi } from "../apis";
+import { categoriesApi, courseApi, userApi } from "../apis";
 import { apiConnector } from "../apiConnector";
 
 // Fetch all categories
@@ -82,4 +82,67 @@ export const getFullDetailsOfCourse = async (courseId, token) => {
 }
 
 
+export const getCreatedCourses = async (token) => {
+  let result = null;
+  const toastId = toast.loading('Loading ...');
+  try {
+    const response = await apiConnector('GET', userApi.GET_GET_CREATED_COURSES_API,
+      null, {
+      Authorization: `Bearer ${token}`
+    });
 
+    result = response.data?.data;
+  } catch (error) {
+    toast.error(error?.response?.data?.error || 'Cannot fetch courses, Try Again');
+  }
+  toast.dismiss(toastId);
+  return result
+}
+
+
+export const deleteCourse = async (data, token) => {
+  let result = null;
+  const toastId = toast.loading('Loading ...');
+  try {
+    const response = await apiConnector('DELETE', courseApi.DELETE_DELETE_COURSE_API,
+      data, {
+      Authorization: `Bearer ${token}`
+    });
+
+    result = response.data?.data;
+  } catch (error) {
+    toast.error(error?.response?.data?.error || 'Cannot delete course, Try Again');
+  }
+  toast.dismiss(toastId);
+  return result
+}
+
+
+export const getCategoryCourses = async (categoryId) => {
+  let result = null;
+  const toastId = toast.loading('Loading ...');
+  try {
+    const response = await apiConnector('POST', categoriesApi.POST_GET_CATEGORY_COURSES_API, { categoryId });
+
+    result = response.data?.data;
+  } catch (error) {
+    toast.error(error?.response?.data?.error || 'Cannot fetch course, Please refresh');
+  }
+  toast.dismiss(toastId);
+  return result
+}
+
+
+export const getCourse = async (courseId) => {
+  let result = null;
+  const toastId = toast.loading('Loading ...');
+  try {
+    const response = await apiConnector('GET', `${courseApi.GET_GET_COURSE_DATA_API}/${courseId}`);
+
+    result = response.data?.data;
+  } catch (error) {
+    toast.error(error?.response?.data?.error || 'Cannot fetch course, Please try again');
+  }
+  toast.dismiss(toastId);
+  return result
+}

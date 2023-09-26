@@ -34,23 +34,20 @@ const CourseInformationForm = () => {
     };
     getCategories();
 
+  }, []);
 
-    // TODO
+  useEffect(() => {
     // if form is in edit mode 
-    if (editCourse) {
+    if (editCourse && courseCategories) {
       setValue("courseTitle", course.title)
       setValue("courseDesc", course.description)
       setValue("coursePrice", course.price)
       setValue("courseCategory", course.category._id)
       setValue("courseBenefits", course.whatYouWillLearn)
-      // setValue("courseTags", course.tags)
-      // setValue("courseThumbnail", course.thumbnail)
-      // setValue("courseRequirements", course.instructions)
     }
-  }, [editCourse, course, setValue]);
+  }, [editCourse, course, setValue, courseCategories]);
 
   const isFormUpdated = () => {
-    // TODO - verify course
     const currentValues = getValues();
     if (
       !(
@@ -105,7 +102,6 @@ const CourseInformationForm = () => {
       formData.append("instructions", JSON.stringify(data.courseRequirements));
     }
 
-    // TODO - verify it
     setLoading(true);
     const result = await editCourseDetails(formData, token, dispatch, navigate);
 

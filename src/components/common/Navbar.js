@@ -91,7 +91,7 @@ const Navbar = () => {
                                     <div className='flex flex-col capitalize' >
                                       {
                                         catalogs.map((catalog, index) => (
-                                          <Link to={catalog.name.split(' ').join('-')} key={index} >
+                                          <Link to={`/categorycourses/${catalog.name.split(' ').join('-')}`} key={index} >
                                             <p className='hover:bg-richblack-50 rounded-lg py-3 pl-4' >{catalog.name}</p>
                                           </Link>
                                         ))
@@ -158,11 +158,12 @@ const Navbar = () => {
           }
         </div>
 
-        {/* TODO : hamburger */}
-        <div>
+
+        {/* HamberBurger Menu - only for small screen */}
+        <div className='mr-4 md:hidden' >
           <GiHamburgerMenu
             onClick={() => setIsMenuModalOpen(prev => !prev)}
-            className={`mr-4 md:hidden fill-richblack-100 `}
+            className={` fill-richblack-100 `}
             fontSize={24}
           />
 

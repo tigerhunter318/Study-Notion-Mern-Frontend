@@ -28,6 +28,9 @@ import InstructorMyCourses from './components/core/Dashboard/InstructorMyCourses
 import AddCourse from './components/core/Dashboard/AddCourse/AddCourse';
 import PrivateStudentRoute from './components/core/Auth/PrivateStudentRoute';
 import PrivateInstructorPage from './components/core/Auth/PrivateInstructorPage';
+import EditCourse from './components/core/Dashboard/EditCourse/EditCourse'
+import CategoryCourses from './pages/CategoryCourses';
+import CourseDetails from './pages/CourseDetails';
 
 function App() {
 
@@ -50,6 +53,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/about' element={<About />} />
+        <Route path='/categorycourses/:categoryName' element={<CategoryCourses />} />
+        <Route path='/course/:courseId' element={<CourseDetails />} />
 
         <Route path='/login' element={<PublicRoute route={<LogIn />} />} />
         <Route path='/signup' element={<PublicRoute route={<SignUp />} />} />
@@ -85,6 +90,7 @@ function App() {
           <Route path='instructor' element={<PrivateInstructorPage route={<InstructorDashboard />} />} />
           <Route path='my-courses' element={<PrivateInstructorPage route={<InstructorMyCourses />} />} />
           <Route path='add-course' element={<PrivateInstructorPage route={<AddCourse />} />} />
+          <Route path='edit-course/:courseId' element={<PrivateInstructorPage route={<EditCourse />} />} />
 
           {/* {
             user?.role === ROLE_TYPE.INSTRUCTOR &&
