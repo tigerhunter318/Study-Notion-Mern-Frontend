@@ -275,7 +275,7 @@ const Navbar = () => {
                           <div className='flex flex-col capitalize' >
                             {
                               catalogs.map((catalog, index) => (
-                                <Link to={catalog.name.split(' ').join('-')} key={index} onClick={() => setIsMenuModalOpen(false)} >
+                                <Link to={`/categorycourses/${catalog.name.split(' ').join('-')}`} key={index} onClick={() => setIsMenuModalOpen(false)} >
                                   <p className=' rounded-lg py-2 pl-4' >{catalog.name}</p>
                                 </Link>
                               ))
