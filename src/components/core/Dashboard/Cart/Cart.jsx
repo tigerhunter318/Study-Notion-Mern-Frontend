@@ -23,7 +23,7 @@ const Cart = () => {
             )
             :
             (
-              <div className='flex flex-col-reverse lg:flex-row items-center mt-8 gap-x-10 gap-y-6' >
+              <div className='flex flex-col-reverse lg:flex-row items-start mt-8 gap-x-10 gap-y-6' >
                 <CartCourses />
                 <CartAmount />
               </div>

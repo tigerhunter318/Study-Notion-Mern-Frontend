@@ -71,7 +71,10 @@ const CourseTable = ({ courses, setCourses }) => {
           {
             courses.map((course) => (
               <Tr key={course._id} className='mt-8 md:mt-0 flex gap-x-10 border-b border-b-richblack-800 py-8 px-6' >
-                <Td className="flex flex-1 gap-x-4" >
+                <Td
+                  className="flex flex-1 gap-x-4 cursor-pointer"
+                  onClick={() => navigate(`/course/${course._id}`)}
+                >
                   <img
                     src={course.thumbnail}
                     alt={"course-thumbnail"}

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { buyCourses } from '../../../../services/operations/studentFeaturesServices'
 import IconBtn from '../../../common/IconBtn'
+import { toast } from 'react-hot-toast'
 
 const CartAmount = () => {
   const { cartItems, cartTotalAmount } = useSelector(state => state.cart);
@@ -14,6 +15,7 @@ const CartAmount = () => {
   const [loading, setLoading] = useState(false);
 
   const handleBuyCourse = () => {
+    toast.error("Can't buy courses in dev mode")
     const courses = cartItems.map(course => course._id);
     buyCourses(token, courses, user, setLoading, dispatch, navigate);
   }

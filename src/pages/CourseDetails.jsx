@@ -9,6 +9,19 @@ import { BiInfoCircle } from "react-icons/bi"
 import { HiOutlineGlobeAlt } from "react-icons/hi"
 import dateTimeFormatter from '../utils/dateTimeFormatter';
 import CourseBuyNowCard from '../components/core/Course/CourseBuyNowCard';
+import ConfirmationModal from '../components/common/ConfirmationModal';
+import { toast } from "react-hot-toast"
+import { ROLE_TYPE } from '../utils/constants'
+import { addToCart } from '../redux/slices/cartSlice';
+import { useSelector } from 'react-redux';
+import { FaShareSquare } from "react-icons/fa"
+import copy from 'copy-to-clipboard';
+import ReactMarkdown from 'react-markdown'
+import secToDurationFormatter from '../utils/secToDurationFormatter';
+// import { ReactMarkdown } from "react-markdown/lib/react-markdown"
+import { BsDot } from 'react-icons/bs'
+import CourseSectionAccordion from '../components/core/Course/CourseSectionAccordion';
+
 
 const CourseDetails = () => {
   const { courseId } = useParams();
@@ -17,14 +30,24 @@ const CourseDetails = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [confirmationModalData, setConfirmationModalData] = useState(null);
+  const { user } = useSelector(state => state.profile);
+  const [totalNoOfLectures, setTotalNoOfLectures] = useState(0);
+  const [openSections, setOpenSections] = useState([]);
+
+
+
 
   useEffect(() => {
     const fetchCourseData = async () => {
       setLoading(true);
       const result = await getCourse(courseId);
-      console.log(result)
       if (result) {
         setCourseData(result);
+        let lectures = 0;
+        result.sections.forEach((section) => {
+          lectures += section.subSections.length
+        })
+        setTotalNoOfLectures(lectures)
       }
       setLoading(false);
     };
@@ -32,15 +55,91 @@ const CourseDetails = () => {
   }, [courseId])
 
   const handleAddToCart = () => {
-    // TODO
+    // User is Instructor
+    if (user && user.role === ROLE_TYPE.INSTRUCTOR) {
+      toast.error("Instructor can't buy a course")
+      return;
+    }
+
+    // User is student
+    if (user) {
+      dispatch(addToCart(courseData));
+      return;
+    }
+
+    // When the user is not logged in
+    setConfirmationModalData({
+      text1: 'You are not logged in !!',
+      text2: 'Please login to add to Cart',
+      btn1Text: 'LogIn',
+      btn2Text: 'Cancel',
+      btn1Handler: () => navigate('/login'),
+      btn2Handler: () => setConfirmationModalData(null),
+      closeModalHandler: () => setConfirmationModalData(null),
+    })
   }
 
-  const handleBuyCourse = () => {
+  const handleBuyNowClick = () => {
+    // User is Instructor
+    if (user && user.role === ROLE_TYPE.INSTRUCTOR) {
+      toast.error("Instructor can't buy a course")
+      return;
+    }
 
+    // User is already bought that course
+    if (user && courseData.studentsEnrolled.includes(user._id)) {
+      navigate('/dashboard/enrolled-courses')
+      return
+    }
+
+    if (user) {
+      buyCourse();
+      return;
+    }
+
+    // When the user is not logged in
+    setConfirmationModalData({
+      text1: 'You are not logged in !!',
+      text2: 'Please login to Buy this Course',
+      btn1Text: 'LogIn',
+      btn2Text: 'Cancel',
+      btn1Handler: () => navigate('/login'),
+      btn2Handler: () => setConfirmationModalData(null),
+      closeModalHandler: () => setConfirmationModalData(null),
+    })
+  }
+
+  const handleShare = () => {
+    copy(window.location.href)
+    toast.success("Link copied to the clipboard")
+  }
+
+  const buyCourse = () => {
+    // TODO - all payment related functions are pending
+    toast.error("Error : Payment not possible, on dev mode")
+  }
+
+  const handleCollapseExpand = () => {
+    if (openSections.length === 0) {
+      // Expand all
+      const allSectionsIds = courseData.sections.map((section) => section._id)
+      setOpenSections(allSectionsIds)
+    } else {
+      // Collapse all
+      setOpenSections([]);
+    }
+  }
+
+  const handleOpenSection = (sectionId) => {
+    setOpenSections(
+      openSections.includes(sectionId) ?
+        openSections.filter(secId => secId !== sectionId)
+        : [...openSections, sectionId]
+    )
   }
 
   return (
-    <div className=''>
+    <div className='bg-richblack-900' >
 
       {
         loading && (
@@ -61,10 +160,10 @@ const CourseDetails = () => {
       {
         !loading && courseData &&
         (
-          <div className='bg-richblack-900 text-white' >
-            <div className='bg-richblack-800'  >
+          <div className='bg-richblack-900 text-richblack-5' >
+            <div className='bg-richblack-800 text-richblack-5 '  >
               {/* Course Details */}
-              <div className='mx-auto px-4 py-8 lg:w-[1260px] min-h-[450px]  ' >
+              <div className='mx-auto px-4 py-8 lg:w-[1260px] min-h-[450px]  2xl:relative' >
 
                 <div className='mx-auto lg:mx-0 flex flex-col items-center lg:items-start max-w-maxContentTab xl:max-w-[810px]' >
                   <p className='text-sm w-full ml-5 lg:ml-0 text-left text-richblack-300' >Home / Learning /
@@ -121,45 +220,156 @@ const CourseDetails = () => {
 
                     <button
                       className='rounded-md bg-yellow-50 px-5 py-2 font-semibold text-richblack-900'
-                      onClick={handleBuyCourse}
+                      onClick={handleBuyNowClick}
                     >
-                      Buy Now
+                      {
+                        user && courseData.studentsEnrolled.includes(user._id) ?
+                          "Go To Course" :
+                          "Buy Now"
+                      }
                     </button>
 
-                    <button
-                      className='rounded-md bg-richblack-800 px-5 py-2 font-semibold text-richblack-5'
-                      onClick={handleAddToCart}
-                    >
-                      Add to Cart
-                    </button>
+                    {
+                      (!user || !courseData.studentsEnrolled.includes(user._id)) &&
+                      (
+                        <button
+                          className='rounded-md bg-richblack-800 px-5 py-2 font-semibold text-richblack-5'
+                          onClick={handleAddToCart}
+                        >
+                          Add to Cart
+                        </button>
+                      )
+                    }
+
+                    <div className='mx-auto text-center'>
+                      <button className='py-6 text-yellow-100' onClick={handleShare} >
+                        <div className='flex items-center gap-2' >
+                          <FaShareSquare size={15} />
+                          <p>Share</p>
+                        </div>
+                      </button>
+                    </div>
+
 
                   </div>
                 </div>
+
+                {/* Buy Now Card - For larger screen */}
+                <div className='hidden lg:block lg:absolute right-4 top-[80px]' >
+                  <CourseBuyNowCard
+                    courseData={courseData}
+                    handleBuyNowClick={handleBuyNowClick}
+                    handleAddToCart={handleAddToCart}
+                    handleShare={handleShare}
+                    setConfirmationModalData={setConfirmationModalData}
+                  />
+                </div>
               </div>
 
-              {/* Buy Now - For larger screen TODO */}
-              <div className='hidden lg:block' >
-                <CourseBuyNowCard
-                  courseData={courseData}
-                  handleBuyCourse={handleBuyCourse}
-                  setConfirmationModalData={setConfirmationModalData}
-                />
-              </div>
+
             </div>
 
-            {/* Reviews */}
+            <div className='bg-richblack-900 text-richblack-5' >
+              <div className='px-4 lg:w-[1260px] mx-auto' >
+                <div className='mx-auto lg:mx-0 max-w-maxContentTab xl:max-w-[810px]' >
+
+                  {/* What you will learn */}
+                  <div className='border border-richblack-600 my-8 p-8' >
+                    <p className='text-3xl font-semibold' >What you will learn</p>
+                    <div className='mt-5' >
+                      <ReactMarkdown  >
+                        {courseData.whatYouWillLearn}
+                      </ReactMarkdown>
+                    </div>
+                  </div>
+
+                  {/* Course Content */}
+                  <div className='max-w-[830px]' >
+                    <div className='flex flex-col gap-y-3' >
+                      <p className='text-[28px] font-semibold' >Course Content</p>
+
+                      <div className='flex flex-wrap justify-between gap-2' >
+
+                        <div className='flex gap-1 text-sm text-richblack-200' >
+                          <p>{courseData.sections.length} section(s)</p>
+                          <p className='flex  items-center'>
+                            <BsDot size={24} />
+                            {totalNoOfLectures}
+                            <span> lectures</span>
+                          </p>
+                          <p className='flex items-center'>
+                            <BsDot size={24} />
+                            {secToDurationFormatter(courseData.totalDuration)}
+                            <span>total length</span>
+                          </p>
+                        </div>
+
+                        <div>
+                          <button
+                            className='text-yellow-25'
+                            onClick={() => handleCollapseExpand()}
+                          >
+                            {openSections.length ? "Collapse all sections" : "Expand all sections"}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Course Details  */}
+                    <div className='py-4' >
+                      {
+                        courseData?.sections.map((section, ind) => (
+                          <div key={ind} >
+                            <CourseSectionAccordion
+                              section={section}
+                              openSections={openSections}
+                              handleOpenSection={handleOpenSection}
+                            />
+                          </div>
+                        ))
+                      }
+                    </div>
+
+                  </div>
+
+                  {/* Author Details */}
+                  <div className='max-w-[830px] mb-12 py-4'>
+                    <p className='text-[28px] font-semibold' >Author</p>
+                    <div className='flex gap-x-2 items-center py-4' >
+                      <img
+                        src={courseData.instructor.avatar}
+                        alt="Author"
+                        className='h-14 aspect-square rounded-full object-cover'
+                      />
+
+                      <p className='text-lg' >{courseData.instructor.firstName} {courseData.instructor.lastName}</p>
+                    </div>
+                    <p className='text-richblack-50' >
+                      {courseData?.instructor?.profile?.about}
+                    </p>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+            {/* TODO - Reviews */}
             <div>
               {/* <p>Reviews from other learners</p> */}
             </div>
 
-            {/* TODO- uncomment it */}
             {/* Footer */}
-            {/* <Footer /> */}
+            <Footer />
           </div>
         )
       }
 
-
+      {
+        confirmationModalData && <ConfirmationModal
+          modalData={confirmationModalData}
+        />
+      }
 
     </div>
   )

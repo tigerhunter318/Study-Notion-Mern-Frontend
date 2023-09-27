@@ -1,25 +1,32 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { removeFromCart } from '../../../../redux/slices/cartSlice';
-import { useDispatch } from 'react-redux';
 import { FaStar } from "react-icons/fa"
 import { RiDeleteBin6Line } from "react-icons/ri"
 import ReactStars from 'react-rating-stars-component'
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const CartCourses = () => {
   const { cartItems } = useSelector(state => state.cart);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <div className='flex flex-col flex-1'>
       {
         cartItems.map((course, ind) => (
-          <div key={course._id} className={`flex items-start justify-between flex-wrap w-full gap-6
-          ${ind === cartItems.length - 1 && 'border-b border-b-richblack-400 pb-6'}
+          <div
+            key={course._id}
+            className={`flex items-start justify-between flex-wrap w-full gap-6
+          ${ind !== cartItems.length - 1 && 'border-b border-b-richblack-400 pb-6'}
           ${ind !== 0 && 'mt-6'}
           `}>
 
-            <div className='flex flex-1 flex-col gap-4 lg:flex-row' >
+            <div
+              className='flex flex-1 flex-col gap-4 lg:flex-row cursor-pointer '
+              onClick={() => navigate(`/course/${course._id}`)}
+            >
 
               <img src={course?.thumbnail} alt={course?.title}
                 className='h-[148px] w-[220px] rounded-lg object-cover'
@@ -48,7 +55,7 @@ const CartCourses = () => {
 
             </div>
 
-            <div className='flex flex-col items-end space-y-2'>
+            <div className='flex flex-col items-end space-y-2' >
               <button
                 onClick={() => dispatch(removeFromCart(course._id))}
                 className='flex items-center gap-x-1 rounded-md border border-richblack-600 bg-richblack-700 py-3 px-3 text-pink-200' >
