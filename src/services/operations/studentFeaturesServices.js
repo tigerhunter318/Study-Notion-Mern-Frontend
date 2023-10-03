@@ -13,8 +13,3 @@ export const getEnrolledCourses = async (token, setEnrolledCourses, dispatch, na
     toast.error(error?.response?.data?.error || 'Fetch Failed')
   }
 }
-
-export const buyCourses = async (token, courses, user, setLoading, dispatch, navigate) => {
-  // TODO
-  console.log('first')
-}

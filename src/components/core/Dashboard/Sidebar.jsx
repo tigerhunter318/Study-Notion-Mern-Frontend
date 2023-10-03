@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { matchPath, useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import sidebarLinks from '../../../data/sidebarLinks'
 import SidebarLink from './SidebarLink'
 import { VscSignOut } from 'react-icons/vsc'
