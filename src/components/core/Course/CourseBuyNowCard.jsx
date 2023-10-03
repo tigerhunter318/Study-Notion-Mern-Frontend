@@ -2,6 +2,7 @@ import React from 'react'
 import { BsFillCaretRightFill } from "react-icons/bs"
 import { FaShareSquare } from "react-icons/fa"
 import { useSelector } from 'react-redux'
+import { ROLE_TYPE } from '../../../utils/constants'
 
 
 const CourseBuyNowCard = ({ courseData, handleBuyNowClick, handleAddToCart, handleShare, setConfirmationModalData }) => {
@@ -33,7 +34,10 @@ const CourseBuyNowCard = ({ courseData, handleBuyNowClick, handleAddToCart, hand
           </button>
 
           {
-            (!user || !courseData.studentsEnrolled.includes(user._id)) &&
+            (!user ||
+              (user.role === ROLE_TYPE.STUDENT && !courseData.studentsEnrolled.includes(user._id))
+            )
+            &&
             (
               <button
                 onClick={handleAddToCart}
