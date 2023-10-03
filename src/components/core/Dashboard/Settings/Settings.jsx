@@ -1,19 +1,10 @@
 import React from 'react'
-import IconBtn from '../../../common/IconBtn'
-import { RiEditBoxLine } from 'react-icons/ri'
-import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import dateFormatter from '../../../../utils/dateFormatter'
-import { FiUpload } from "react-icons/fi"
 import ChangeProfilePicture from './ChangeProfilePicture'
 import EditProfile from './EditProfile'
 import { UpdatePassword } from './UpdatePassword'
 import DeleteAccount from './DeleteAccount'
 
 const Settings = () => {
-
-  const navigate = useNavigate();
-  const { user } = useSelector(state => state.profile)
 
   return (
 

@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { buyCourses } from '../../../../services/operations/studentFeaturesServices'
 import IconBtn from '../../../common/IconBtn'
 import { toast } from 'react-hot-toast'
+import { buyCourses } from '../../../../services/operations/paymentServices'
 
 const CartAmount = () => {
   const { cartItems, cartTotalAmount } = useSelector(state => state.cart);
@@ -14,10 +14,9 @@ const CartAmount = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const handleBuyCourse = () => {
-    toast.error("Can't buy courses in dev mode")
+  const handleBuyCourse = async () => {
     const courses = cartItems.map(course => course._id);
-    buyCourses(token, courses, user, setLoading, dispatch, navigate);
+    await buyCourses(courses, user, token, true, dispatch, navigate);
   }
 
   return (

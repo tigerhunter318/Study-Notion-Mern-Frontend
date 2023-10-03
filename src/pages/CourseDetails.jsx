@@ -21,6 +21,7 @@ import secToDurationFormatter from '../utils/secToDurationFormatter';
 // import { ReactMarkdown } from "react-markdown/lib/react-markdown"
 import { BsDot } from 'react-icons/bs'
 import CourseSectionAccordion from '../components/core/Course/CourseSectionAccordion';
+import { buyCourses } from '../services/operations/paymentServices';
 
 
 const CourseDetails = () => {
@@ -31,9 +32,9 @@ const CourseDetails = () => {
   const navigate = useNavigate();
   const [confirmationModalData, setConfirmationModalData] = useState(null);
   const { user } = useSelector(state => state.profile);
+  const { token } = useSelector(state => state.auth);
   const [totalNoOfLectures, setTotalNoOfLectures] = useState(0);
   const [openSections, setOpenSections] = useState([]);
-
 
 
 
@@ -79,7 +80,7 @@ const CourseDetails = () => {
     })
   }
 
-  const handleBuyNowClick = () => {
+  const handleBuyNowClick = async () => {
     // User is Instructor
     if (user && user.role === ROLE_TYPE.INSTRUCTOR) {
       toast.error("Instructor can't buy a course")
@@ -93,7 +94,7 @@ const CourseDetails = () => {
     }
 
     if (user) {
-      buyCourse();
+      await buyCourses([courseId], user, token, false, dispatch, navigate);
       return;
     }
 
@@ -114,10 +115,6 @@ const CourseDetails = () => {
     toast.success("Link copied to the clipboard")
   }
 
-  const buyCourse = () => {
-    // TODO - all payment related functions are pending
-    toast.error("Error : Payment not possible, on dev mode")
-  }
 
   const handleCollapseExpand = () => {
     if (openSections.length === 0) {
