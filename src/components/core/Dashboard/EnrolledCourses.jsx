@@ -9,18 +9,20 @@ import ProgressBar from '@ramonak/react-progress-bar'
 const EnrolledCourses = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [enrolledCourses, setEnrolledCourses] = useState([]);
+  const [enrolledCourses, setEnrolledCourses] = useState(null);
   const { token } = useSelector(state => state.auth);
 
   useEffect(() => {
-    getEnrolledCourses(token, setEnrolledCourses, dispatch, navigate);
+    const fetchEnrolledCourses = async () => {
+      await getEnrolledCourses(token, setEnrolledCourses, dispatch, navigate);
+    };
+    fetchEnrolledCourses();
   }, [token, dispatch, navigate]);
 
 
   return (
     <div className='bg-richblack-900 '>
       <h2 className='text-richblack-50 text-3xl' >Enrolled Courses</h2>
-
       {
         !enrolledCourses ?
           (
