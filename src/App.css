@@ -115,3 +115,40 @@ body {
 .removeBlueBoxColor {
   -webkit-tap-highlight-color: transparent;
 }
+
+
+.check-box-style {
+  /* -webkit-animation: none; */
+  appearance: none;
+  background: #161D29;
+  margin: 0;
+  font: inherit;
+  color: #0f7a9d;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 2px solid #838894;
+  border-radius: 4px;
+
+  display: grid;
+  place-content: center;
+}
+
+.check-box-style::before {
+  content: '';
+  width: 0.7rem;
+  height: 0.7rem;
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 2em 2em green;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.check-box-style:checked::before {
+  transform: scale(1);
+}
+
+.check-box-style:focus{
+  outline: max(2px, 0.15em) solid #0f7a9d;
+  outline-offset: max(2px, 0.15em);
+}

@@ -31,6 +31,7 @@ import PrivateInstructorPage from './components/core/Auth/PrivateInstructorPage'
 import EditCourse from './components/core/Dashboard/EditCourse/EditCourse'
 import CategoryCourses from './pages/CategoryCourses';
 import CourseDetails from './pages/CourseDetails';
+import ViewCourse from './pages/ViewCourse';
 
 function App() {
 
@@ -105,7 +106,10 @@ function App() {
 
         </Route>
 
-
+        <Route
+          path='view-course/:courseId/section/:sectionId/sub-section/:subSectionId'
+          element={<PrivateStudentRoute route={<ViewCourse />} />}
+        />
 
         <Route path="*" element={<PageNotFound />} />
       </Routes>

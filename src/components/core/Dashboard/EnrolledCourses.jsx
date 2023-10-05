@@ -53,7 +53,7 @@ const EnrolledCourses = () => {
                     ${ind === arr.length - 1 && 'rounded-b-lg'}`} >
                         <div className='flex w-[45%] px-5 py-3 cursor-pointer gap-4'
                           onClick={() => navigate(
-                            `/view-course/${course?._id}/section/${course?.section?.[0]?._id}/sub-section/${course?.section?.[0]?.subSections?.[0]?._id}`
+                            `/view-course/${course?._id}/section/${course?.sections?.[0]?._id}/sub-section/${course?.sections?.[0]?.subSections?.[0]?._id}`
                           )}
                         >
                           <img src={course?.thumbnail} className='h-14 w-14 rounded-lg object-cover' alt="course_img" />

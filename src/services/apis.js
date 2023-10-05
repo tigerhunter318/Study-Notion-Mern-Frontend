@@ -20,16 +20,20 @@ export const categoriesApi = {
   POST_GET_CREATE_CATEGORY_API: BASE_URL + '/categories'
 }
 
+// COURSE PROGRESS API
+export const courseProgressApi = {
+  POST_MARK_SUBSECTION_AS_COMPLETED: BASE_URL + '/courseprogress/marksubsectionascompleted'
+}
+
 // COURSE API
 export const courseApi = {
   GET_GET_ALL_COURSES_API: BASE_URL + '/courses',
   GET_GET_COURSE_DATA_API: BASE_URL + '/courses/getcourse', // /courseId
   POST_GET_FULL_DETAILS_OF_COURSE: BASE_URL + '/courses/getfullcoursedetails',
   POST_CREATE_COURSE_API: BASE_URL + '/courses',
-  GET_GET_ALL_REVIEWS_OF_COURSE_API: BASE_URL + '/courses', // /courseId/reviews
   PUT_EDIT_COURSE_API: BASE_URL + '/courses/editcourse',
   DELETE_DELETE_COURSE_API: BASE_URL + '/courses/deletecourse',
-  
+  POST_GET_ENROLLED_COURSE_DATA: BASE_URL +'/courses/getenrolledcoursedata'
 }
 
 // OTHER API
@@ -52,10 +56,11 @@ export const profileApi = {
 
 // REVIEW API
 export const reviewApi = {
-  GET_GET_ALL_REVIEWS_API: BASE_URL + '/reviews',
-  GET_GET_REVIEW_API: BASE_URL + '/reviews', // /reviewId
-  POST_CREATE_REVIEW_API: BASE_URL + '/reviews',
-  DELETE_DELETE_REVIEW_API: BASE_URL + '/reviews', // /reviewId
+  GET_GET_ALL_REVIEWS_API: BASE_URL + '/reviews/getallreviews',
+  POST_GET_REVIEW_API: BASE_URL + '/reviews/getreview', 
+  POST_GET_ALL_REVIEWS_OF_COURSE_API: BASE_URL + '/reviews/getreviewsofcourse',
+  POST_CREATE_REVIEW_API: BASE_URL + '/reviews/createreview',
+  DELETE_DELETE_REVIEW_API: BASE_URL + '/reviews/deletereview', 
 }
 
 // SECTION API
