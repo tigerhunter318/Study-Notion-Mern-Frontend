@@ -1,11 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { removeFromCart } from '../../../../redux/slices/cartSlice';
-import { FaStar } from "react-icons/fa"
 import { RiDeleteBin6Line } from "react-icons/ri"
-import ReactStars from 'react-rating-stars-component'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import RatingStars from '../../../common/RatingStars';
 
 const CartCourses = () => {
   const { cartItems } = useSelector(state => state.cart);
@@ -38,16 +37,8 @@ const CartCourses = () => {
 
                 <div className='flex items-center gap-2' >
                   <span className='text-yellow-5' >{course?.averageRating}</span>
-
-                  <ReactStars
-                    count={5}
-                    value={course?.averageRating}
-                    size={20}
-                    edit={false}
-                    activeColor={'#ffd700'}
-                    emptyIcon={<FaStar />}
-                    filledIcon={<FaStar />}
-                  />
+                  
+                  <RatingStars rating={course?.averageRating} starSize={20} />
 
                   <span className='text-richblack-400' >{course?.reviews?.length} Ratings</span>
                 </div>

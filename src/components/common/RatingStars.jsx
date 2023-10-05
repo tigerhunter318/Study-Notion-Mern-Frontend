@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactStars from "react-rating-stars-component";
 import { TiStarFullOutline, TiStarHalfOutline, TiStarOutline } from "react-icons/ti"
 import { useState } from 'react';
 import { useEffect } from 'react';
