@@ -61,6 +61,7 @@ const UploadFile = ({
   }
 
 
+  // eslint-disable-next-line
   const { getInputProps, getRootProps, isDragActive, acceptedFiles, fileRejections, open, inputRef } = useDropzone({
     accept: video ?
       { "video/*": [".mp4", ".mkv"] } :
@@ -86,6 +87,7 @@ const UploadFile = ({
     if (!(videoFile && durationName)) return;
     setValue(durationName, videoFile.duration);
   }
+
 
 
   useEffect(() => {
