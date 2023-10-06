@@ -70,7 +70,8 @@ export const sendOtp = async (email, dispatch, navigate) => {
 
 
 export const logout = async (token, dispatch, navigate) => {
-  try {
+  try {  
+    // eslint-disable-next-line
     const response = await apiConnector('POST', authApi.POST_LOGOUT_USER_API, null, {
       Authorization: `Bearer ${token}`
     });

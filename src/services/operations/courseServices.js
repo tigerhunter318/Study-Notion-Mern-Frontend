@@ -1,5 +1,5 @@
 import { toast } from "react-hot-toast"
-import { categoriesApi, courseApi, userApi } from "../apis";
+import { categoriesApi, courseApi, reviewApi, userApi } from "../apis";
 import { apiConnector } from "../apiConnector";
 
 // Fetch all categories
@@ -144,5 +144,18 @@ export const getCourse = async (courseId) => {
     toast.error(error?.response?.data?.error || 'Cannot fetch course, Please try again');
   }
   toast.dismiss(toastId);
+  return result
+}
+
+
+// Get all reviews of a course
+export const getAllReviewsOfCourse = async (courseId) => {
+  let result = [];
+  try {
+    const response = await apiConnector('POST', reviewApi.POST_GET_ALL_REVIEWS_OF_COURSE_API, { courseId });
+    result = response.data?.data;
+  } catch (error) {
+    toast.error('Could not fetch course reviews, Refresh the page');
+  }
   return result
 }

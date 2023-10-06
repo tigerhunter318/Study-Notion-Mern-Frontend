@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom'
 import Spinner from '../components/common/Spinner';
-import { getCourse } from '../services/operations/courseServices';
+import { getAllReviewsOfCourse, getCourse } from '../services/operations/courseServices';
 import Footer from '../components/common/Footer';
 import RatingStars from '../components/common/RatingStars';
 import { BiInfoCircle } from "react-icons/bi"
@@ -22,6 +22,8 @@ import secToDurationFormatter from '../utils/secToDurationFormatter';
 import { BsDot } from 'react-icons/bs'
 import CourseSectionAccordion from '../components/core/Course/CourseSectionAccordion';
 import { buyCourses } from '../services/operations/paymentServices';
+import { getAllReviews } from '../services/operations/otherServices';
+import ReviewsSlider from '../components/common/ReviewsSlider';
 
 
 const CourseDetails = () => {
@@ -35,6 +37,8 @@ const CourseDetails = () => {
   const { token } = useSelector(state => state.auth);
   const [totalNoOfLectures, setTotalNoOfLectures] = useState(0);
   const [openSections, setOpenSections] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  const [loading2, setLoading2] = useState(false);
 
 
 
@@ -52,7 +56,19 @@ const CourseDetails = () => {
       }
       setLoading(false);
     };
+
+
+    const fetchAllReviews = async () => {
+      setLoading2(true);
+      const response = await getAllReviewsOfCourse(courseId);
+      if (response) {
+        setReviews(response);
+      }
+      setLoading2(false);
+    };
+
     fetchCourseData();
+    fetchAllReviews();
   }, [courseId])
 
   const handleAddToCart = () => {
@@ -352,9 +368,30 @@ const CourseDetails = () => {
 
             </div>
 
-            {/* TODO - Reviews */}
-            <div>
-              {/* <p>Reviews from other learners</p> */}
+
+            {/* Reviews Section */}
+            <div className='mt-8' >
+              <h2 className='text-center text-3xl md:text-4xl font-semibold mt-8' >
+                Reviews from other learners
+              </h2>
+
+              {/* Reviews Slider */}
+              <div className='' >
+                {
+                  loading2 ?
+                    (
+                      <div className='min-h-[150px] grid place-items-center' >
+                        <Spinner />
+                      </div>
+                    )
+                    :
+                    (
+                      <div>
+                        <ReviewsSlider reviews={reviews} />
+                      </div>
+                    )
+                }
+              </div>
             </div>
 
             {/* Footer */}
