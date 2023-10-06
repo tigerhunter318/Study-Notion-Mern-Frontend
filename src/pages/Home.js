@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
 import HighlightedText from '../components/core/HomePage/HighlightedText'
@@ -10,9 +10,28 @@ import InstructorSection from '../components/core/HomePage/InstructorSection';
 import ExploreMore from '../components/core/HomePage/ExploreMore';
 import Banner from '../assets/Images/banner.mp4'
 import Footer from '../components/common/Footer'
+import ReviewsSlider from '../components/common/ReviewsSlider';
+import Spinner from '../components/common/Spinner';
+import { getAllReviews } from '../services/operations/otherServices';
 
 
 const Home = () => {
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAllReviews = async () => {
+      setLoading(true);
+      const response = await getAllReviews();
+      if (response) {
+        setReviews(response);
+      }
+      setLoading(false);
+    }
+    fetchAllReviews();
+  }, [])
+
+
   return (
     <div className=' bg-richblack-900 flex flex-col font-inter min-h-screen w-screen'>
 
@@ -176,15 +195,28 @@ const Home = () => {
 
           {/* Review section */}
           <div>
-            <h2 className='text-center text-4xl font-semibold mt-8' >
+            <h2 className='text-center text-3xl md:text-4xl font-semibold mt-8' >
               Reviews from other learners
             </h2>
 
-            {/* TODO :- Review slider here */}
-            <div>
 
+            {/* Review slider */}
+            <div className='' >
+              {
+                loading ?
+                  (
+                    <div className='min-h-[150px] grid place-items-center' >
+                      <Spinner />
+                    </div>
+                  )
+                  :
+                  (
+                    <div>
+                      <ReviewsSlider reviews={reviews} />
+                    </div>
+                  )
+              }
             </div>
-
           </div>
         </div>
       </div>

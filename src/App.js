@@ -22,6 +22,7 @@ import Settings from './components/core/Dashboard/Settings/Settings';
 import Cart from './components/core/Dashboard/Cart/Cart';
 import EnrolledCourses from './components/core/Dashboard/EnrolledCourses';
 import PurchaseHistory from './components/core/Dashboard/PurchaseHistory';
+// eslint-disable-next-line
 import { ROLE_TYPE } from './utils/constants';
 import InstructorDashboard from './components/core/Dashboard/InstructorDashboard/InstructorDashboard';
 import InstructorMyCourses from './components/core/Dashboard/InstructorMyCourses/InstructorMyCourses';
@@ -45,6 +46,7 @@ function App() {
     }
   }, [token, dispatch, navigate]);
 
+  // eslint-disable-next-line
   const { user } = useSelector(state => state.profile);
 
   return (

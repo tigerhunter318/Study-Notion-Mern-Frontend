@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import HighlightedText from '../components/core/HomePage/HighlightedText'
 import Footer from '../components/common/Footer'
 import FoundingStory from '../assets/Images/FoundingStory.png'
@@ -9,9 +9,28 @@ import Quote from '../components/core/AboutPage.js/Quote'
 import StudyNotionStats from '../components/core/AboutPage.js/StudyNotionStats'
 import LearningGrid from '../components/core/AboutPage.js/LearningGrid'
 import ContactUsForm from '../components/core/ContactPage/ContactUsForm'
+import { getAllReviews } from '../services/operations/otherServices';
+import ReviewsSlider from '../components/common/ReviewsSlider'
+import Spinner from '../components/common/Spinner'
 
 
 const About = () => {
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAllReviews = async () => {
+      setLoading(true);
+      const response = await getAllReviews();
+      if (response) {
+        setReviews(response);
+      }
+      setLoading(false);
+    }
+    fetchAllReviews();
+  }, [])
+
+
   return (
     <div className='text-white' >
       {/* Section 1 */}
@@ -97,13 +116,32 @@ const About = () => {
         </div>
       </div>
 
-      {/* Section 7 */}
+      {/* Section 7 - Review Section */}
       <div className='bg-richblack-900' >
-        <div className='w-11/12 mt-20 mb-20 mx-auto flex flex-col justify-between text-white' >
-          <h1 className='text-center mt-8 text-3xl md:text-4xl font-semibold text-richblack-5' >Reviews from other learner</h1>
+        <div className='w-11/12 mt-5 mx-auto flex flex-col justify-between text-white' >
+          <div className='mt-8' >
+            <h2 className='text-center text-3xl md:text-4xl font-semibold mt-8' >
+              Reviews from other learners
+            </h2>
 
-          {/* TODO - add Reviews section */}
-          {/* <ReviewSlider /> */}
+            {/* Reviews Slider */}
+            <div className='' >
+              {
+                loading ?
+                  (
+                    <div className='min-h-[150px] grid place-items-center' >
+                      <Spinner />
+                    </div>
+                  )
+                  :
+                  (
+                    <div>
+                      <ReviewsSlider reviews={reviews} />
+                    </div>
+                  )
+              }
+            </div>
+          </div>
         </div>
       </div>
 
