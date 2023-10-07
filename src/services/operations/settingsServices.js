@@ -10,6 +10,7 @@ export const changeAvatar = async (token, formData, setLoading, dispatch, naviga
   setLoading(true);
 
   try {
+    // eslint-disable-next-line
     const response = await apiConnector('PUT', userApi.PUT_CHANGE_AVATAR_API, formData, {
       'Content-Type': 'multipart/form-data',
       'Authorization': `Bearer ${token}`
@@ -24,6 +25,7 @@ export const changeAvatar = async (token, formData, setLoading, dispatch, naviga
   toast.dismiss(toastId);
 }
 
+// eslint-disable-next-line
 export const updateProfile = async (token, updateData, setLoading, dispatch, navigate) => {
   const toastId = toast.loading('Updating...')
   setLoading(true);
@@ -48,6 +50,7 @@ export const changePassword = async (token, passwordData, setLoading, dispatch, 
   setLoading(true);
 
   try {
+    // eslint-disable-next-line
     const response = await apiConnector('PUT', authApi.PUT_CHANGE_PASSWORD_API, passwordData, {
       'Authorization': `Bearer ${token}`
     });
@@ -65,7 +68,8 @@ export const deleteCurrentUser = async (token, dispatch, navigate) => {
   const toastId = toast.loading('Deleting...');
 
   try {
-    const response = await apiConnector('DELETE', userApi.DEL_DELETE_CURRENT_USER_API, null, {
+    // eslint-disable-next-line
+    const response = await apiConnector('DELETE', userApi.DELETE_DELETE_CURRENT_USER_API, null, {
       'Authorization': `Bearer ${token}`
     });
     toast.success('Account Deleted successfully');

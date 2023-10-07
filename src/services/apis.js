@@ -16,7 +16,7 @@ export const authApi = {
 // CATAGORIES API
 export const categoriesApi = {
   GET_GET_ALL_CATEGORIES_API: BASE_URL + '/categories',
-  POST_GET_CATEGORY_COURSES_API: BASE_URL + '/categories/getcategorycourses', 
+  POST_GET_CATEGORY_COURSES_API: BASE_URL + '/categories/getcategorycourses',
   POST_GET_CREATE_CATEGORY_API: BASE_URL + '/categories'
 }
 
@@ -33,7 +33,7 @@ export const courseApi = {
   POST_CREATE_COURSE_API: BASE_URL + '/courses',
   PUT_EDIT_COURSE_API: BASE_URL + '/courses/editcourse',
   DELETE_DELETE_COURSE_API: BASE_URL + '/courses/deletecourse',
-  POST_GET_ENROLLED_COURSE_DATA: BASE_URL +'/courses/getenrolledcoursedata'
+  POST_GET_ENROLLED_COURSE_DATA: BASE_URL + '/courses/getenrolledcoursedata'
 }
 
 // OTHER API
@@ -57,24 +57,24 @@ export const profileApi = {
 // REVIEW API
 export const reviewApi = {
   GET_GET_ALL_REVIEWS_API: BASE_URL + '/reviews/getallreviews',
-  POST_GET_REVIEW_API: BASE_URL + '/reviews/getreview', 
+  POST_GET_REVIEW_API: BASE_URL + '/reviews/getreview',
   POST_GET_ALL_REVIEWS_OF_COURSE_API: BASE_URL + '/reviews/getreviewsofcourse',
   POST_CREATE_REVIEW_API: BASE_URL + '/reviews/createreview',
-  DELETE_DELETE_REVIEW_API: BASE_URL + '/reviews/deletereview', 
+  DELETE_DELETE_REVIEW_API: BASE_URL + '/reviews/deletereview',
 }
 
 // SECTION API
 export const sectionApi = {
   POST_CREATE_SECTION_API: BASE_URL + '/sections',
-  PUT_UPDATE_SECTION_API: BASE_URL + '/sections', 
+  PUT_UPDATE_SECTION_API: BASE_URL + '/sections',
   DELETE_DELETE_SECTION_API: BASE_URL + '/sections',
 }
 
 // SUBSECTION API
 export const subsectionApi = {
   POST_CREATE_SUBSECTION_API: BASE_URL + '/subsections',
-  PUT_UPDATE_SUBSECTION_API: BASE_URL + '/subsections', 
-  DELETE_DELETE_SUBSECTION_API: BASE_URL + '/subsections', 
+  PUT_UPDATE_SUBSECTION_API: BASE_URL + '/subsections',
+  DELETE_DELETE_SUBSECTION_API: BASE_URL + '/subsections',
 }
 
 // USER API
@@ -84,6 +84,7 @@ export const userApi = {
   PUT_CHANGE_AVATAR_API: BASE_URL + '/users/changeavatar',
   GET_GET_ENROLLED_COURSES_API: BASE_URL + '/users/getenrolledcourses',
   GET_GET_CREATED_COURSES_API: BASE_URL + '/users/getcreatedcourses',
+  GET_GET_INSTRUCTOR_DASHBOARD_DATA_API: BASE_URL + '/users/getinstructordashboarddata',
   GET_GET_ALL_REVIEWS_BY_USER_API: BASE_URL + '/users/getallreviews',
   DELETE_DELETE_CURRENT_USER_API: BASE_URL + '/users/deletecurrentuser',
   GET_CURRENT_LOGGED_USER_API: BASE_URL + '/users/currentuser',
