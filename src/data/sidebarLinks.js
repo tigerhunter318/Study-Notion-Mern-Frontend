@@ -41,13 +41,13 @@ const sidebarLinks = [
     type: ROLE_TYPE.STUDENT,
     icon: "AiOutlineShoppingCart",
   },
-  {
-    id: 7,
-    name: "Purchase History",
-    path: "/dashboard/purchase-history",
-    type: ROLE_TYPE.STUDENT,
-    icon: "VscHistory",
-  },
+  // {
+  //   id: 7,
+  //   name: "Purchase History",
+  //   path: "/dashboard/purchase-history",
+  //   type: ROLE_TYPE.STUDENT,
+  //   icon: "VscHistory",
+  // },
 ];
 
 // module.exports = sidebarLinks
