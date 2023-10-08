@@ -92,7 +92,8 @@ const VideoDetails = ({ subSection, loading }) => {
     setLoading2(true);
     await markSubSectionAsCompleted(courseId, subSectionId, token, dispatch)
     setLoading2(false);
-    setVideoEnded(false)
+    goToNextVideo();
+    setVideoEnded(false);
   }
 
   const handleRewatchClick = async () => {
