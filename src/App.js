@@ -76,7 +76,7 @@ function App() {
           {/* Routes only for students */}
           <Route path='cart' element={<PrivateStudentRoute route={<Cart />} />} />
           <Route path='enrolled-courses' element={<PrivateStudentRoute route={<EnrolledCourses />} />} />
-          <Route path='purchase-history' element={<PrivateStudentRoute route={<PurchaseHistory />} />} />
+          {/* <Route path='purchase-history' element={<PrivateStudentRoute route={<PurchaseHistory />} />} /> */}
 
           {/* {
             user?.role === ROLE_TYPE.STUDENT &&
