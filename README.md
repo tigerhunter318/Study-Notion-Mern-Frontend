@@ -20,11 +20,11 @@ This is a Edtech website, where user can be Instructor or an Student. Instructor
 
 ## How to Use
 
-#
+&nbsp; 
 
 ### A. Run only Frontend
 
-##
+&nbsp; 
 
 #### 1. Clone or extract this github repo in your local machine
 
@@ -56,17 +56,12 @@ mv example.env .env
 npm start
 ```
 
-#
-
-#
-
-#
-
-#
+&nbsp;
+&nbsp;  
 
 ### B. Run Frontend as well as Backend simultaneously
-> Your directory will look like this - 
-![alt text](https://i.postimg.cc/HLbPS5pg/2.png)
+> ##### Your directory will look like this - 
+> ##### ![Directory Structure](studyNotion-dir.png)
 ##
 
 #### 1. Create a directory StudyNotion
