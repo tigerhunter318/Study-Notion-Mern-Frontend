@@ -1,70 +1,166 @@
-# Getting Started with Create React App
+# Study-Notion-Mern-Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> StudyNotion is a Edtech website. Where a "Instructor" can upload his courses and a "Student" can watch his lectures by paying him. This website is built using MERN (MongoDB, Express, React, NodeJs) Technologies. Frontend/UI is base on React, Redux, Tailwind, CSS, Javascript and HTML.
 
-## Available Scripts
+## Links
 
-In the project directory, you can run:
+> #### Full Stack Website - [Click Here](https://github.com/sunny8080/Study-Notion-Mern)
+>
+> #### Frontend - [Click Here](https://github.com/sunny8080/Study-Notion-Mern-Frontend/)
+>
+> #### Backend - [Click Here](https://github.com/sunny8080/Study-Notion-Mern-Backend/)
+>
+> #### Frontend Live at - [Click Here](https://study-notion-mern-sunny8080.netlify.app/)
+>
+> #### Backend Live at - [Click Here](https://study-notion-mern-backend-sunny8080.onrender.com/)
 
-### `npm start`
+## Usage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This is a Edtech website, where user can be Instructor or an Student. Instructor can upload his courses and Student can enroll in his courses by paying him and watch his lectures.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How to Use
 
-### `npm test`
+### A. Run only Frontend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### 1. Clone or extract this github repo in your local machine
 
-### `npm run build`
+```
+git clone https://github.com/sunny8080/Study-Notion-Mern-Frontend frontend
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### 2. Move to frontend directory
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+cd frontend
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### 3. Install dependencies
 
-### `npm run eject`
+```
+npm i
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#### 4. Rename "example.env" to ".env" and set/update all the values/settings of your own
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+mv example.env .env
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### 5. Run App (default - app will run on port 3000)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+npm start
+```
 
-## Learn More
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### B. Run Frontend as well as Backend simultaneously
+
+#### 1. Create a directory StudyNotion
+
+```
+mkdir StudyNotion
+```
+
+#### 2. Move to StudyNotion directory
+
+```
+cd StudyNotion
+```
+
+#### 3. SetUp Frontend
+
+##### 3.1 Clone or extract frontend github repo in current directory (StudyNotion directory)
+
+```
+git clone https://github.com/sunny8080/Study-Notion-Mern-Frontend frontend
+```
+
+##### 3.2 Move to frontend directory
+
+```
+cd frontend
+```
+
+##### 3.3 Install dependencies of frontend
+
+```
+npm i
+```
+
+##### 3.4 Rename "example.env" to ".env" and set/update all the values/settings of your own
+
+```
+mv example.env .env
+```
+
+#### 4. Move back to StudyNotion directory
+
+```
+cd ..
+```
+
+#### 5. SetUp Backend
+
+##### 5.1 Clone or extract backend github repo in current directory (StudyNotion directory)
+
+```
+git clone https://github.com/sunny8080/Study-Notion-Mern-Backend backend
+```
+
+##### 5.2 Move to backend directory
+
+```
+cd backend
+```
+
+##### 5.3 Install dependencies of backend
+
+```
+npm i
+```
+
+##### 5.4 Rename "config/example.config.env" to "config/config.env" and set/update all the values/settings of your own
+
+```
+mv config/example.config.env config/config.env
+```
+
+#### 6. Move to Frontend directory
+
+```
+cd ../frontend
+```
+
+#### 7. Run App
+
+> Frontend will run on Port 3000 (By default)
+> Backend will run on Port 4000 (By default)
+
+```
+npm run dev
+```
+
+## Live at
+
+The Website is live at - [https://study-notion-mern-sunny8080.netlify.app/](https://study-notion-mern-sunny8080.netlify.app/)
+
+- Version - 1.0.0
+- License: Sunny8080
+- Author: Sunny Kumar
