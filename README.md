@@ -20,7 +20,11 @@ This is a Edtech website, where user can be Instructor or an Student. Instructor
 
 ## How to Use
 
+#
+
 ### A. Run only Frontend
+
+##
 
 #### 1. Clone or extract this github repo in your local machine
 
@@ -52,25 +56,18 @@ mv example.env .env
 npm start
 ```
 
-```
+#
 
+#
 
+#
 
-
-
-
-
-
-
-
-
-
-
-```
-
-
+#
 
 ### B. Run Frontend as well as Backend simultaneously
+> Your directory will look like this - 
+![alt text](https://i.postimg.cc/HLbPS5pg/2.png)
+##
 
 #### 1. Create a directory StudyNotion
 
@@ -150,8 +147,9 @@ cd ../frontend
 
 #### 7. Run App
 
-> Frontend will run on Port 3000 (By default)
-> Backend will run on Port 4000 (By default)
+> #### Frontend will run on Port 3000 (By default)
+>
+> #### Backend will run on Port 4000 (By default)
 
 ```
 npm run dev
