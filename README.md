@@ -63,7 +63,7 @@ npm start
 
 > ##### Your directory will look like this -
 >
-> ##### ![Directory Structure](./studyNotion-dir.png)
+![Directory Structure](./studyNotion-dir.png)
 
 &nbsp;
 
