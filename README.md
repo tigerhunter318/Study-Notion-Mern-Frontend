@@ -61,8 +61,8 @@ npm start
 
 ### B. Run Frontend as well as Backend simultaneously
 
-> ##### Your directory will look like this -
->
+> ##### Your directory will look like this
+
 ![Directory Structure](./studyNotion-dir.png)
 
 &nbsp;
@@ -81,7 +81,7 @@ cd StudyNotion
 
 #### 3. SetUp Frontend
 
-##### 3.1 Clone or extract frontend github repo in current directory (StudyNotion directory)
+##### 3.1 Clone or extract frontend github repo in current directory ( StudyNotion directory )
 
 ```
 git clone https://github.com/sunny8080/Study-Notion-Mern-Frontend frontend
@@ -113,7 +113,7 @@ cd ..
 
 #### 5. SetUp Backend
 
-##### 5.1 Clone or extract backend github repo in current directory (StudyNotion directory)
+##### 5.1 Clone or extract backend github repo in current directory ( StudyNotion directory )
 
 ```
 git clone https://github.com/sunny8080/Study-Notion-Mern-Backend backend
@@ -158,5 +158,5 @@ npm run dev
 The Website is live at - [https://study-notion-mern-sunny8080.netlify.app/](https://study-notion-mern-sunny8080.netlify.app/)
 
 - Version - 1.0.0
-- License: Sunny8080
+- License: sunny8080
 - Author: Sunny Kumar
