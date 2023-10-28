@@ -18,14 +18,14 @@ const ReviewCard = ({ review }) => {
       <div className='flex gap-x-3 items-center' >
         <div>
           <img
-            src={review.user.avatar}
+            src={review.user?.avatar}
             alt={"student-avatar"}
             className='w-9 aspect-square rounded-full object-cover'
           />
         </div>
 
         <div className='flex flex-col' >
-          <p className='text-richblack-5 text-lg font-semibold' >{review.user.firstName} {review.user.lastName}</p>
+          <p className='text-richblack-5 text-lg font-semibold' >{review.user?.firstName} {review.user?.lastName}</p>
           <p className='text-richblack-200 text-xs font-medium' >{review.course.title}</p>
         </div>
       </div>
