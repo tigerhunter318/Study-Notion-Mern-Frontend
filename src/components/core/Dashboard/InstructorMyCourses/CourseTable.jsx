@@ -132,7 +132,6 @@ const CourseTable = ({ courses, setCourses }) => {
                   </button>
 
                   <button
-                    disabled={loading || course.studentsEnrolled.length !== 0}
                     onClick={() => handleCourseDeleteClick(course)}
                     title='delete'
                     className='px-2 transition-all duration-200 hover:scale-110 hover:text-[#ff0000]'

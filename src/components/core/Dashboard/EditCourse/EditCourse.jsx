@@ -24,7 +24,6 @@ const EditCourse = () => {
     const fetchCourseDetails = async () => {
       setLoading(true)
       const result = await getFullDetailsOfCourse(courseId, token);
-      console.log(result)
       if (result) {
         dispatch(setCourse(result));
         dispatch(setEditCourse(true));
