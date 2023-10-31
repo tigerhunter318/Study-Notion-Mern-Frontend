@@ -40,11 +40,11 @@ export const buyCourses = async (courses, user, token, cartResetTrue, dispatch, 
       toast.dismiss(toastId);
       return;
     }
-
+    
     // Step 3 - Razorpay checkout code to Website
     // Open the Razorpay payment modal, with customized options
     const options = {
-      key: process.env.REACT_RAZORPAY_PAY_KEY_ID,
+      key: process.env.REACT_APP_RAZORPAY_PAY_KEY_ID,
       amount: orderResponse.data.data.amount,
       currency: orderResponse.data.data.currency,
       name: 'StudyNotion',
